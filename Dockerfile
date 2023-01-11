@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:bullseye-slim
 
 # Install GPSBabel
 RUN apt-get update -y && apt-get install -y gpsbabel && apt-get install -y curl
@@ -16,7 +16,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
 
+EXPOSE 8080
 
 ENTRYPOINT	["node", "index.js"]
