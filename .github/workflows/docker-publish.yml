@@ -2,7 +2,7 @@ name: Build and Publish Container Image
 
 
 on:
-  worklflow_dispatch:
+  workflow_dispatch:
   
 env:
   # Use docker.io for Docker Hub if empty
