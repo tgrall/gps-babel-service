@@ -1,0 +1,26 @@
+{
+  "name": "gps-babel-service",
+  "version": "1.0.0",
+  "description": "This project expose GPS Babel as a service to convert trace to GPX format.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/windr-app/gps-babel-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/windr-app/gps-babel-service/issues"
+  },
+  "homepage": "https://github.com/windr-app/gps-babel-service#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
