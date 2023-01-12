@@ -9,7 +9,7 @@ const fetch = require ('node-fetch');
 
 const app = express();
 const port = 8080;
-const HOST = '0.0.0.0';
+const API_VERSION = '0.1';
 
 
 app.get('/', (req, res) => {
@@ -18,7 +18,12 @@ app.get('/', (req, res) => {
 
 app.get('/version', (req, res) => {
     gpsbabel.version(function(version) {
-        res.send(version)
+        res.send(
+            {
+                "api_version": API_VERSION,
+                "gpsbabel_version": version,
+            }
+        )
     });
 });
 
