@@ -40,7 +40,7 @@ app.get('/convert', async (req, res) => {
         // get the file from the url and save it locally using node-fetch
         const resGetFile = await fetch(input_file);
 
-        let input_file_local = "./tmp/" + input_file.split("/").pop();
+        let input_file_local = "/tmp/" + input_file.split("/").pop();
 
         // remove file extension from input_file_local
         output_file = input_file_local.split('.').slice(0, -1).join('.') + "." + output_format;
