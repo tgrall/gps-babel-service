@@ -1,0 +1,49 @@
+
+
+
+file  =  "https://upload-windr.cellar-c2.services.clever-cloud.com/103667961621022786141/103667961621022786141_2021_01_16.sbn"
+
+
+
+
+
+###
+GET http://localhost:8080
+
+###
+GET http://localhost:8080/version
+
+###
+GET http://localhost:8080/convert
+
+
+### Convert using GET using HTTP
+GET http://localhost:8080/convert?input_format=sbn&input_file=https://upload-windr.cellar-c2.services.clever-cloud.com/103667961621022786141/103667961621022786141_2021_01_16.sbn
+
+
+
+### Convert using GET using local file
+GET http://localhost:8080/convert?input_format=sbn&input_file=https://upload-windr.cellar-c2.services.clever-cloud.com/103667961621022786141/103667961621022786141_2021_01_16.sbn
+
+###
+GET http://localhost:8080/convert/version
+
+###
+
+POST http://localhost:8080/convert
+
+
+
+### Test locally
+
+POST http://localhost:8080/convert HTTP/1.1
+content-type: application/json
+
+{
+    "input_format": "sbn",
+    "input_file": "https://upload-windr.cellar-c2.services.clever-cloud.com/103667961621022786141/103667961621022786141_2021_01_16.sbn"
+    "output_format": "gpx",
+}
+
+
+##
