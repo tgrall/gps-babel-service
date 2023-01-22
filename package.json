@@ -1,6 +1,6 @@
 {
   "name": "gps-babel-service",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "This project expose GPS Babel as a service to convert trace to GPX format.",
   "main": "index.js",
   "directories": {
