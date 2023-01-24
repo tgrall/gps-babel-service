@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import rateLimit from 'express-rate-limit';
 
 import Logger from './Services/Logger';
 
@@ -27,8 +28,20 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.static(path.join(__dirname, 'static')));
 // ----------------------- Statics ---------------------------------------- //
 
+
+
+// ----------------------- Define Rate Limiting ---------------------------------------- //
+const apiLimiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
+
+
 // ------------------------ Routes ---------------------------------------- //
-app.get('/', (req, res) => {
+app.get('/', apiLimiter, (req, res) => {
     res.send('Well done!');
 })
 
@@ -37,7 +50,7 @@ app.get('/version', (req, res) => {
     res.send( { "application" :  LIB_VERSION, "gpsbabel" : result  } );
 })
 
-app.use('/convert', converterRouter);
+app.use('/convert', apiLimiter, converterRouter);
 
 // ---------------------- Start server ------------------------------------ //
 const port = process.env.PORT || 8080;
