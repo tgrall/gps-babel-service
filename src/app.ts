@@ -3,6 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
+import Logger from './Services/Logger';
+
 import { converterRouter } from './Routes/converterRouter';
 import { GPSBabel } from './Services/GPSBabel';
 import { LIB_VERSION } from './version';
@@ -30,8 +32,8 @@ app.get('/', (req, res) => {
     res.send('Well done!');
 })
 
-app.get('/version', async (req, res) => {
-    const result = await GPSBabel.getVersion();
+app.get('/version', (req, res) => {
+    const result = GPSBabel.getVersion();
     res.send( { "application" :  LIB_VERSION, "gpsbabel" : result  } );
 })
 
@@ -40,5 +42,5 @@ app.use('/convert', converterRouter);
 // ---------------------- Start server ------------------------------------ //
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-    console.log('The application is listening on port '+ port +'! \n http://localhost:'+ port +'/');
+    Logger.info(`The application is listening on port ${port}! \n http://localhost:${port}/` );
 })

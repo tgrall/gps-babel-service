@@ -1,3 +1,5 @@
+/* eslint "@typescript-eslint/no-misused-promises":0  */
+
 import { Router } from "express";
 import {converterController, version} from '../Controllers/converterController';
 

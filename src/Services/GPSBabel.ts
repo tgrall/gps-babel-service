@@ -2,29 +2,31 @@ import { converterParameters } from '@/Models/converterTypes';
 import * as child_process from 'child_process';
 
 export class GPSBabel {
-    
-    public static async convertTrace(params: converterParameters) : Promise<String> {
-        let output:String = "to_process";
 
+    public static convertTrace(params: converterParameters) : string {
+        let output;
 
         const command = `gpsbabel -w -r -t -i ${params.input_format} -f ${params.input_local_file} -o ${params.output_format} -F  ${params.output_file} `;
-        
-        try { 
-            const result = await child_process.execSync(command);
+
+        try {
+            child_process.execSync(command);
             output = params.output_file;
-        } catch (error :any) {
-            output = error.toString().trim();
+        } catch (error: any) {
+            if (error instanceof Error)  {
+                output = error.message;
+            } else {
+                output = "UNKNOWN ERROR";
+            }
         }
-        
+
         return output;
     }
 
 
     // get version
-    public static async getVersion() : Promise<String> {
+    public static getVersion() : string {
         const command = 'gpsbabel -V';
-        const result =await child_process.execSync(command);
-        
+        const result =child_process.execSync(command);
         return result.toString().trim();
     }
 
